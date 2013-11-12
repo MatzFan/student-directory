@@ -18,9 +18,20 @@ students = [
   'Peter..',
   'Jean-Baptiste..'
 ]
-# first, we print all student names
-puts 'The students of my cohort at Makers Academy'
-puts '-------------------------------------------'
-puts students.each { |s| puts s }
-# finally, we print the total number of students
-print "Overall we have #{students.size} great students."
+
+def print_header
+  puts 'The students of my cohort at Makers Academy'
+  puts '-------------------------------------------'
+end
+
+def print(names)
+	puts names.each { |name| puts name }
+end
+
+def print_footer(names)
+  puts "Overall we have #{names.size} great students."
+end
+
+print_header
+print(students)
+print_footer(students)
