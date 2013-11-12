@@ -11,7 +11,7 @@ students = [
   {name: 'Tom..', cohort: :november},
   {name: 'Tom..', cohort: :november},
   {name: 'Giacomo..', cohort: :november},
-  {name: 'Annette..', cohort: :november},
+  {name: 'Anath Abensour', cohort: :november},
   {name: 'Asta..', cohort: :november},
   {name: 'Kumi..', cohort: :november},
   {name: 'Nisar..', cohort: :november},
