@@ -21,23 +21,23 @@ students = [
 ]
 =end
 
-@@student = {cohort: :november}
+$student_attributes = [:name, :hobby]
 
 def input_students
-  student_attributes = [:name, :hobby]
 	print "Please enter the details for each student\n"
 	print "To finish just hit return twice\n"
 	students = [] # empty array
 	loop do
+    $student = {cohort: :november}
     puts 'Another?'
     another = gets.chomp
     break if another =~/[Nn]|[Oo]/
-    student_attributes.each do |a|
+    $student_attributes.each do |a|
       puts "Enter #{a.capitalize}"
       value = gets.chomp
-      @@student[a] = value
+      $student[a] = value
     end
-    students << @@student
+    students << $student
     puts "Now we have #{students.size} students"
   end
 	students # return the array
@@ -48,11 +48,11 @@ def print_header
   print "-------------------------------------------\n"
 end
 
-def print_students(students, name_length) # note: overides String.print
-	students.each_with_index do |s, i|
-	  #if s[:name].length < name_length # only names shorter than length 
-	    print "#{i+1}. #{s[:name]} #{s[:hobby]} (#{s[:cohort]} cohort)\n"
-	  #end
+def print_students(students) # note: overides String.print
+	students.each do |s|
+    st = ""
+    $student_attributes.each { |a| st += "#{s[a]} " }
+	  puts "#{st} (#{s[:cohort]} cohort)"
 	end
 end
 
@@ -62,5 +62,5 @@ end
 
 students = input_students
 print_header
-print_students(students, 5)
+print_students(students)
 print_footer(students)
