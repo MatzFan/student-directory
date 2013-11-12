@@ -25,11 +25,11 @@ def input_students
 	print "Please enter the names of the students\n"
 	print "To finish just hit return twice\n"
 	students = [] # empty array
-	name = gets.chomp
-	while !name.empty? do
-		students << {name: name, cohort: :november} # append new hash to array
+	while line = gets.chomp do
+		break if line.empty? # exit the loop if an empty string entered
+		puts 'Name?'
+		students << { name: line, cohort: :november } # append new hash to array
 		print "Now we have #{students.size} students"
-		name = gets.chomp
 	end
 	students # return the array
 end
@@ -40,7 +40,7 @@ def print_header
 end
 
 def print_students(students, name_length) # note: overides String.print
-	students.each_with_index do |s, i|
+	students.each_with_index do |s, i| 
 	  if s[:name].length < name_length # only names shorter than length 
 	    print "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)\n"
 	  end
