@@ -39,8 +39,12 @@ def print_header
   print "-------------------------------------------\n"
 end
 
-def print_students(students) # note: overides String.print
-	students.each_with_index { |s, i| print "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)\n"  }
+def print_students(students, start_letter) # note: overides String.print
+	students.each_with_index do |s, i|
+	  if s[:name][0] == start_letter 
+	    print "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)\n"
+	  end
+	end
 end
 
 def print_footer(names)
@@ -49,5 +53,5 @@ end
 
 students = input_students
 print_header
-print_students(students)
+print_students(students, "A")
 print_footer(students)
