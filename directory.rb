@@ -18,3 +18,7 @@ puts 'Nisar..'
 puts 'Georgi..'
 puts 'Peter..'
 puts 'Jean-Baptiste..'
+
+print "Overall we have "
+print 23
+print " great students."
