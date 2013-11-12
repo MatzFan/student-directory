@@ -24,14 +24,14 @@ students = [
 $student_attributes = [:name, :hobby]
 
 def input_students
-	print "Please enter the details for each student\n"
+	puts "Please enter the details for each student"
 	print "To finish just hit return twice\n"
 	students = [] # empty array
 	loop do
     $student = {cohort: :november}
     puts 'Another?'
     another = gets.chomp
-    break if another =~/[Nn]|[Oo]/
+    break if another =~/[Nn]/
     $student_attributes.each do |a|
       puts "Enter #{a.capitalize}"
       value = gets.chomp
@@ -44,15 +44,17 @@ def input_students
 end
 
 def print_header
-  print "The students of my cohort at Makers Academy\n"
-  print "-------------------------------------------\n"
+  header = "The students of my cohort at Makers Academy"
+  puts header
+  header.size.times { print '-' }
+  puts
 end
 
 def print_students(students) # note: overides String.print
-	students.each do |s|
+	students.each_with_index do |s, i|
     st = ""
     $student_attributes.each { |a| st += "#{s[a]} " }
-	  puts "#{st} (#{s[:cohort]} cohort)"
+	  puts "#{i+1}. #{st} (#{s[:cohort]} cohort)"
 	end
 end
 
