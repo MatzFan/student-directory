@@ -22,15 +22,17 @@ students = [
 =end
 
 def input_students
-	print "Please enter the names of the students\n"
+  student_attributes = [:name, :hobby]
+	print "Please enter the details for each student\n"
 	print "To finish just hit return twice\n"
 	students = [] # empty array
-	name = gets.chomp
-	while !name.empty? do
-		students << {name: name, cohort: :november} # append new hash to array
-		print "Now we have #{students.size} students"
-		name = gets.chomp
-	end
+	loop do
+    puts 'Name?'
+    name = gets.chomp
+    break if name.empty?
+    students << {name: name, cohort: :november} # append new hash to array
+    puts "Now we have #{students.size} students"
+  end
 	students # return the array
 end
 
@@ -41,9 +43,9 @@ end
 
 def print_students(students, name_length) # note: overides String.print
 	students.each_with_index do |s, i|
-	  if s[:name].length < name_length # only names shorter than length 
+	  #if s[:name].length < name_length # only names shorter than length 
 	    print "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)\n"
-	  end
+	  #end
 	end
 end
 
