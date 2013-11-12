@@ -1,24 +1,26 @@
-student_count = 23
+students = [
+  'Bruce Steedman',
+  'James Brooke',
+  'Chis..',
+  'Hannah..',
+  'Laura..',
+  'Jeremy Marer',
+  'Kennedy..',
+  'Simon..',
+  'Tom..',
+  'Tom..',
+  'Giacomo..',
+  'Annette..',
+  'Asta..',
+  'Kumi..',
+  'Nisar..',
+  'Georgi..',
+  'Peter..',
+  'Jean-Baptiste..'
+]
 # first, we print all student names
 puts 'The students of my cohort at Makers Academy'
 puts '-------------------------------------------'
-puts 'Bruce Steedman'
-puts 'James Brooke'
-puts 'Chis..'
-puts 'Hannah..'
-puts 'Laura..'
-puts 'Jeremy Marer'
-puts 'Kennedy..'
-puts 'Simon..'
-puts 'Tom..'
-puts 'Tom..'
-puts 'Giacomo..'
-puts 'Annette..'
-puts 'Asta..'
-puts 'Kumi..'
-puts 'Nisar..'
-puts 'Georgi..'
-puts 'Peter..'
-puts 'Jean-Baptiste..'
+puts students.each { |s| puts s }
 # finally, we print the total number of students
-print "Overall we have #{student_count} great students."
+print "Overall we have #{students.size} great students."
