@@ -40,7 +40,7 @@ def print_header
 end
 
 def print_students(students) # note: overides String.print
-	students.each { |s| print "#{s[:name]} (#{s[:cohort]} cohort)\n"  }
+	students.each_with_index { |s, i| print "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)\n"  }
 end
 
 def print_footer(names)
