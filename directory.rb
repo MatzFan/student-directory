@@ -21,16 +21,23 @@ students = [
 ]
 =end
 
+@@student = {cohort: :november}
+
 def input_students
   student_attributes = [:name, :hobby]
 	print "Please enter the details for each student\n"
 	print "To finish just hit return twice\n"
 	students = [] # empty array
 	loop do
-    puts 'Name?'
-    name = gets.chomp
-    break if name.empty?
-    students << {name: name, cohort: :november} # append new hash to array
+    puts 'Another?'
+    another = gets.chomp
+    break if another =~/[Nn]|[Oo]/
+    student_attributes.each do |a|
+      puts "Enter #{a.capitalize}"
+      value = gets.chomp
+      @@student[a] = value
+    end
+    students << @@student
     puts "Now we have #{students.size} students"
   end
 	students # return the array
@@ -44,7 +51,7 @@ end
 def print_students(students, name_length) # note: overides String.print
 	students.each_with_index do |s, i|
 	  #if s[:name].length < name_length # only names shorter than length 
-	    print "#{i+1}. #{s[:name]} (#{s[:cohort]} cohort)\n"
+	    print "#{i+1}. #{s[:name]} #{s[:hobby]} (#{s[:cohort]} cohort)\n"
 	  #end
 	end
 end
