@@ -1,22 +1,22 @@
 students = [
-  'Bruce Steedman',
-  'James Brooke',
-  'Chis..',
-  'Hannah..',
-  'Laura..',
-  'Jeremy Marer',
-  'Kennedy..',
-  'Simon..',
-  'Tom..',
-  'Tom..',
-  'Giacomo..',
-  'Annette..',
-  'Asta..',
-  'Kumi..',
-  'Nisar..',
-  'Georgi..',
-  'Peter..',
-  'Jean-Baptiste..'
+  {name: 'Bruce Steedman', cohort: :november},
+  {name: 'James Brooke', cohort: :november},
+  {name: 'Chis..', cohort: :november},
+  {name: 'Hannah..', cohort: :november},
+  {name: 'Laura..', cohort: :november},
+  {name: 'Jeremy Marer', cohort: :november},
+  {name: 'Kennedy..', cohort: :november},
+  {name: 'Simon..', cohort: :november},
+  {name: 'Tom..', cohort: :november},
+  {name: 'Tom..', cohort: :november},
+  {name: 'Giacomo..', cohort: :november},
+  {name: 'Annette..', cohort: :november},
+  {name: 'Asta..', cohort: :november},
+  {name: 'Kumi..', cohort: :november},
+  {name: 'Nisar..', cohort: :november},
+  {name: 'Georgi..', cohort: :november},
+  {name: 'Peter..', cohort: :november},
+  {name: 'Jean-Baptiste..', cohort: :november}
 ]
 
 def print_header
@@ -24,8 +24,8 @@ def print_header
   puts '-------------------------------------------'
 end
 
-def print(names)
-	puts names.each { |name| puts name }
+def print(students)
+	students.each { |s| puts "#{s[:name]} (#{s[:cohort]} cohort)"  }
 end
 
 def print_footer(names)
