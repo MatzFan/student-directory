@@ -1,3 +1,4 @@
+=begin
 students = [
   {name: 'Bruce Steedman', cohort: :november},
   {name: 'James Brooke', cohort: :november},
@@ -18,6 +19,20 @@ students = [
   {name: 'Peter..', cohort: :november},
   {name: 'Jean-Baptiste..', cohort: :november}
 ]
+=end
+
+def input_students
+	puts 'Please enter the names of the students'
+	puts 'To finish just hit return twice'
+	students = [] # empty array
+	name = gets.chomp
+	while !name.empty? do
+		students << {name: name, cohort: :november} # append new hash to array
+		puts "Now we have #{students.size} students"
+		name = gets.chomp
+	end
+	students # return the array
+end
 
 def print_header
   puts 'The students of my cohort at Makers Academy'
@@ -32,6 +47,7 @@ def print_footer(names)
   puts "Overall we have #{names.size} great students."
 end
 
+students = input_students
 print_header
 print(students)
 print_footer(students)
