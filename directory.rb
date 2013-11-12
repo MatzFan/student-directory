@@ -22,32 +22,32 @@ students = [
 =end
 
 def input_students
-	puts 'Please enter the names of the students'
-	puts 'To finish just hit return twice'
+	print "Please enter the names of the students\n"
+	print "To finish just hit return twice\n"
 	students = [] # empty array
 	name = gets.chomp
 	while !name.empty? do
 		students << {name: name, cohort: :november} # append new hash to array
-		puts "Now we have #{students.size} students"
+		print "Now we have #{students.size} students"
 		name = gets.chomp
 	end
 	students # return the array
 end
 
 def print_header
-  puts 'The students of my cohort at Makers Academy'
-  puts '-------------------------------------------'
+  print "The students of my cohort at Makers Academy\n"
+  print "-------------------------------------------\n"
 end
 
-def print(students)
-	students.each { |s| puts "#{s[:name]} (#{s[:cohort]} cohort)"  }
+def print_students(students) # note: overides String.print
+	students.each { |s| print "#{s[:name]} (#{s[:cohort]} cohort)\n"  }
 end
 
 def print_footer(names)
-  puts "Overall we have #{names.size} great students."
+  print "Overall we have #{names.size} great students.\n"
 end
 
 students = input_students
 print_header
-print(students)
+print_students(students)
 print_footer(students)
