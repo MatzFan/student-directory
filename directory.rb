@@ -1,4 +1,4 @@
-require 'openssl'
+require 'pry'
 
 =begin
 students = [
@@ -23,14 +23,13 @@ students = [
 ]
 =end
 MONTHS = Date::MONTHNAMES
-
 $header = "The students of my cohort at Makers Academy"
-# student attributes implemented as hash; key is attribute name, value is default
-$student_attributes = {cohort: MONTHS[11], name: 'Unknown', hobby: 'None'}
+# student attributes is a hash; key is attribute name, value is default
+$student_attributes = {cohort: MONTHS[11], name: 'Unknown', hobby: 'None', country: nil}
 def input_students
 	puts "Please enter the details for each student"
 	print "To finish just hit return twice\n"
-	students = [] # empty array
+	students = []
 	loop do
     puts 'Another?'
     another = gets.chomp
@@ -39,7 +38,8 @@ def input_students
     # call private method to input student data
     student = input_student_attributes(new_student)
     students << student
-    puts "Now we have #{students.size} students"
+    puts "Now we have #{students.size} student" +
+    (students.size > 1 ? "s" : "") 
   end
 	students # return the array
 end
@@ -57,6 +57,10 @@ def print_students(students)
     $student_attributes.each { |k,v| st += "#{s[k]} " }
 	  puts "#{i+1}. #{st} (#{s[:cohort]} cohort)".center($header.length)
 	end
+end
+
+def print_students_grouped(students)
+  print_students(students)
 end
 
 def print_footer(names)
@@ -96,5 +100,5 @@ end
 
 students = input_students
 print_header
-print_students(students)
+print_students_grouped(students)
 print_footer(students)
