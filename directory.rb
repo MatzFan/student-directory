@@ -59,8 +59,17 @@ def print_students(students)
 	end
 end
 
-def print_students_grouped(students)
-  print_students(students)
+def print_students_by_cohort(students, cohort)
+  relevant_students = students.select {|s| s[:cohort] == cohort}
+  relevant_students.each_with_index do |s, index|
+    puts "#{s[:cohort]} Cohort"
+    puts
+    msg = ""
+    $student_attributes.map do |k,v|
+      msg += "#{s[k]} " unless k == :cohort # excludes group attribute
+    end
+    puts "#{index+1}. #{msg}".center($header.length)
+  end
 end
 
 def print_footer(names)
@@ -100,5 +109,5 @@ end
 
 students = input_students
 print_header
-print_students_grouped(students)
+print_students_by_cohort(students, 'November')
 print_footer(students)
