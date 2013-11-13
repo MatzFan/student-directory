@@ -28,16 +28,13 @@ def input_students
 	print "To finish just hit return twice\n"
 	students = [] # empty array
 	loop do
-    $student = {cohort: :november}
     puts 'Another?'
     another = gets.chomp
     break if another =~/[Nn]/
-    $student_attributes.each do |a|
-      puts "Enter #{a.capitalize}"
-      value = gets.chomp
-      $student[a] = value
-    end
-    students << $student
+    new_student = {cohort: :november}
+    # call private method to input student data
+    student = input_student_attributes(new_student)
+    students << student
     puts "Now we have #{students.size} students"
   end
 	students # return the array
@@ -50,7 +47,7 @@ def print_header
   puts
 end
 
-def print_students(students) # note: overides String.print
+def print_students(students)
 	students.each_with_index do |s, i|
     st = ""
     $student_attributes.each { |a| st += "#{s[a]} " }
@@ -60,6 +57,16 @@ end
 
 def print_footer(names)
   print "Overall we have #{names.size} great students.\n"
+end
+
+private
+def input_student_attributes(student)
+  $student_attributes.each do |a|
+    puts "Enter #{a.capitalize}"
+    value = gets.chomp
+    student[a] = value # adds new attribute and value pair to studnent hash
+  end
+  student
 end
 
 students = input_students
