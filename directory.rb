@@ -1,3 +1,5 @@
+require 'openssl'
+
 =begin
 students = [
   {name: 'Bruce Steedman', cohort: :november},
