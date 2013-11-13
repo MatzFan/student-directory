@@ -63,9 +63,9 @@ end
 private
 def input_student_attributes(student)
   $student_attributes.each do |k,v| # elements are hashes
-    puts "Enter #{k.capitalize}"
-    value = gets.chomp
-    student[k] = value # adds new attribute and value pair to studnent hash
+    puts "Enter #{k.capitalize}, just hit enter for default value: #{v}"
+    input_value = gets.chomp
+    input_value.empty? ? student[k] = v : student[k] = input_value # adds new attribute and value pair to studnent hash
   end
   student
 end
