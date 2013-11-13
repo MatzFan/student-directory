@@ -22,8 +22,8 @@ students = [
 =end
 
 $header = "The students of my cohort at Makers Academy"
-$student_attributes = [:name, :hobby]
-
+# student attributes implemented as hash; key is attribute name, value is default
+$student_attributes = {cohort: 'November', name: 'Unknown', hobby: 'None'}
 def input_students
 	puts "Please enter the details for each student"
 	print "To finish just hit return twice\n"
@@ -32,7 +32,7 @@ def input_students
     puts 'Another?'
     another = gets.chomp
     break if another =~/[Nn]/
-    new_student = {cohort: :november}
+    new_student = {}
     # call private method to input student data
     student = input_student_attributes(new_student)
     students << student
@@ -50,7 +50,8 @@ end
 def print_students(students)
 	students.each_with_index do |s, i|
     st = ""
-    $student_attributes.each { |a| st += "#{s[a]} " }
+    # cycle through each attribute hash & print value for each
+    $student_attributes.each { |k,v| st += "#{s[k]} " }
 	  puts "#{i+1}. #{st} (#{s[:cohort]} cohort)".center($header.length)
 	end
 end
@@ -61,10 +62,10 @@ end
 
 private
 def input_student_attributes(student)
-  $student_attributes.each do |a|
-    puts "Enter #{a.capitalize}"
+  $student_attributes.each do |k,v| # elements are hashes
+    puts "Enter #{k.capitalize}"
     value = gets.chomp
-    student[a] = value # adds new attribute and value pair to studnent hash
+    student[k] = value # adds new attribute and value pair to studnent hash
   end
   student
 end
