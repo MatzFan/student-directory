@@ -29,10 +29,10 @@ $student_attributes = {cohort: MONTHS[11], name: 'Unknown', hobby: 'None', count
 def input_students
 	puts "Please enter the details for each student"
 	print "To finish just hit return twice\n"
-	students = []
+	students = [] # students will be an array of hashes
 	loop do
     puts 'Another?'
-    another = gets.chomp
+    another = gets.strip
     break if another =~/[Nn]/
     new_student = {}
     # call private method to input student data
@@ -51,11 +51,11 @@ def print_header
 end
 
 def print_students(students)
-	students.each_with_index do |s, i|
-    st = ""
+	students.each_with_index do |s, index|
     # cycle through each attribute hash & print value for each
-    $student_attributes.each { |k,v| st += "#{s[k]} " }
-	  puts "#{i+1}. #{st} (#{s[:cohort]} cohort)".center($header.length)
+    msg = ""
+    $student_attributes.map { |k,v| msg += "#{s[k]} " }
+	  puts "#{index+1}. #{msg}".center($header.length)
 	end
 end
 
