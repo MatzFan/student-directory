@@ -20,10 +20,11 @@ students = [
   {name: 'Jean-Baptiste..', cohort: :november}
 ]
 =end
+MONTHS = Date::MONTHNAMES
 
 $header = "The students of my cohort at Makers Academy"
 # student attributes implemented as hash; key is attribute name, value is default
-$student_attributes = {cohort: 'November', name: 'Unknown', hobby: 'None'}
+$student_attributes = {cohort: MONTHS[11], name: 'Unknown', hobby: 'None'}
 def input_students
 	puts "Please enter the details for each student"
 	print "To finish just hit return twice\n"
@@ -62,13 +63,34 @@ end
 
 private
 def input_student_attributes(student)
-  $student_attributes.each do |k,v| # elements are hashes
-    puts "Enter #{k.capitalize}, just hit enter for default value: #{v}"
+  $student_attributes.each do |attribute, default| # elements are hashes
+    puts "Enter #{attribute.capitalize}, just hit enter for default value: #{default}"
     input_value = gets.chomp
-    input_value.empty? ? student[k] = v : student[k] = input_value # adds new attribute and value pair to studnent hash
+    if !input_value.empty?
+      # first validate the input
+      student[attribute] = check_input(attribute, input_value)
+    else
+      student[attribute] = default # if empty string use the default
+    end
   end
-  student
+  student # retrun the student
 end
+
+# Validates user input
+private
+def check_input(attribute, user_input)
+  if attribute == :cohort
+    loop do
+      if MONTHS.include? user_input # check it is a valid month
+        return user_input.to_sym
+      end
+      puts "Sorry, please enter a valid month"
+      user_input = gets.chomp
+    end
+  end
+  user_input
+end
+
 
 students = input_students
 print_header
