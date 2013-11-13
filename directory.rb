@@ -21,6 +21,7 @@ students = [
 ]
 =end
 
+$header = "The students of my cohort at Makers Academy"
 $student_attributes = [:name, :hobby]
 
 def input_students
@@ -41,9 +42,8 @@ def input_students
 end
 
 def print_header
-  header = "The students of my cohort at Makers Academy"
-  puts header
-  header.size.times { print '-' }
+  puts $header
+  $header.size.times { print '-' }
   puts
 end
 
@@ -51,7 +51,7 @@ def print_students(students)
 	students.each_with_index do |s, i|
     st = ""
     $student_attributes.each { |a| st += "#{s[a]} " }
-	  puts "#{i+1}. #{st} (#{s[:cohort]} cohort)"
+	  puts "#{i+1}. #{st} (#{s[:cohort]} cohort)".center($header.length)
 	end
 end
 
