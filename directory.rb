@@ -26,35 +26,32 @@ students = [
 class StudentDirectory
 
   MONTHS = Date::MONTHNAMES
+  HEADER = "The students of my cohort at Makers Academy"
+  STUDENT_ATTRIBUTES = {cohort: MONTHS[11], name: 'Unknown', hobby: 'None', country: nil}
+
+  attr_accessor :students
 
   def initialize
     @students = []
   end
 
-  attr_accessor :students
-
-  $header = "The students of my cohort at Makers Academy"
-  # student attributes is a hash; key is attribute name, value is default
-  $student_attributes = {cohort: MONTHS[11], name: 'Unknown', hobby: 'None', country: nil}
-
   def input_students
-  	puts "Please enter the details for each student"
-  	print "To finish just hit return twice\n"
+  	puts "Please enter the details for each student\nTo finish just hit return twice"
   	loop do
-      puts 'Another?'
-      another = gets.strip
-      break if another =~/[Nn]/
-      # call private method to input student data
-      p @students
+      puts @students.length
+      if !(@students.length == 0) # assumes user wants to enter at least one student
+        puts 'Another?'
+        another = gets.strip
+        break if another =~/[Nn]/
+      end
       @students << input_student_attributes
-      puts "Now we have #{students.size} student" +
-      (@students.size > 1 ? "s" : "")
+      puts "Now we have #{students.size} student" + (@students.size > 1 ? "s" : "")
     end
   end
 
   def print_header
-    puts $header
-    $header.size.times { print '-' }
+    puts HEADER
+    HEADER.size.times { print '-' }
     puts
   end
 
@@ -62,8 +59,8 @@ class StudentDirectory
   	students.each_with_index do |s, index|
       # cycle through each attribute hash & print value for each
       msg = ""
-      $student_attributes.map { |k,v| msg += "#{s[k]} " }
-  	  puts "#{index+1}. #{msg}".center($header.length)
+      STUDENT_ATTRIBUTES.map { |k,v| msg += "#{s[k]} " }
+  	  puts "#{index+1}. #{msg}".center(HEADER.length)
   	end
   end
 
@@ -73,10 +70,10 @@ class StudentDirectory
       puts "#{s[:cohort]} Cohort"
       puts
       msg = ""
-      $student_attributes.map do |k,v|
+      STUDENT_ATTRIBUTES.map do |k,v|
         msg += "#{s[k]} " unless k == :cohort # excludes group attribute
       end
-      puts "#{index+1}. #{msg}".center($header.length)
+      puts "#{index+1}. #{msg}".center(HEADER.length)
     end
   end
 
@@ -87,7 +84,7 @@ class StudentDirectory
   private
   def input_student_attributes
     student = {}
-    $student_attributes.each do |attribute, default| # elements are hashes
+    STUDENT_ATTRIBUTES.each do |attribute, default| # elements are hashes
       puts "Enter #{attribute.capitalize}, just hit enter for default value: #{default}"
       input_value = gets.chomp
       if !input_value.empty?
@@ -97,8 +94,6 @@ class StudentDirectory
         student[attribute] = default # if empty string use the default
       end
     end
-    p student
-    student # return the student
   end
 
   # Validates user input
